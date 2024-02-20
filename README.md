@@ -6,7 +6,7 @@ Hello and Welcome to myFlix Movie App!
 
 ## Overview
 
-MyFlix is app built utilizing the MERN stack. The included features allow for user profile registration and authentication, profile management, and the ability to search to save movies from an API database.
+MyFlix is an app built utilizing the MERN stack. The included features allow for user profile registration and authentication, profile management, and the ability to search to save movies from an API database.
 
 ### Features
 
