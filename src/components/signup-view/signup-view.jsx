@@ -16,7 +16,7 @@ export const SignupView = () => {
       Birthday: birthday,
     };
 
-    fetch('https://dashboard.heroku.com/apps/mll-movie-app/users', {
+    fetch('https://mll-movie-app-2b0ca377526b.herokuapp.com/users', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
