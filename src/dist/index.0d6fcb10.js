@@ -27440,7 +27440,7 @@ const MovieCard = ({ movie, onMovieClick })=>{
                         columnNumber: 9
                     }, undefined),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _cardDefault.default).Text, {
-                        children: movie.Director
+                        children: movie.Director.Name
                     }, void 0, false, {
                         fileName: "src/components/movie-card/movie-card.jsx",
                         lineNumber: 11,
@@ -29897,7 +29897,7 @@ const MovieView = ({ movie, onBackClick })=>{
                         onClick: onBackClick,
                         className: "back-button",
                         style: {
-                            cursor: pointer
+                            cursor: "pointer"
                         },
                         children: "Back"
                     }, void 0, false, {
@@ -30064,7 +30064,7 @@ const LoginView = ({ onLoggedIn })=>{
             console.log("Login response: ", data);
             if (data.user) {
                 localStorage.setItem("user", JSON.stringify(data.user));
-                localStorage.setItem("token", data.Token);
+                localStorage.setItem("token", data.token);
                 onLoggedIn(data.user, data.token);
             } else alert("No such user");
         }).catch((e)=>{
