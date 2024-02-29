@@ -1,16 +1,83 @@
 import PropTypes from 'prop-types';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import { Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { FaHeart, FaHeartBroken } from 'react-icons/fa';
 
-export const MovieCard = ({ movie, onMovieClick }) => {
+export const MovieCard = ({ movie, token, setUser, user }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+  useEffect(() => {
+    if (user.favoriteMovies && user.favoriteMovies.includes(movie._id)) {
+      setIsFavorite(true);
+    }
+  }, [user]);
+
+  const addFavoriteMovie = () => {
+    fetch(
+      `https://mll-movie-app-2b0ca377526b.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      { method: 'POST', headers: { Authorization: `Bearer ${token}` } }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          console.log('Failed');
+        }
+      })
+      .then((user) => {
+        if (user) {
+          alert('Added to Favorites');
+          localStorage.setItem('user', JSON.stringify(user));
+          setUser(user);
+          setIsFavorite(true);
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
+  const removeFavoriteMovie = () => {
+    fetch(
+      `https://mll-movie-app-2b0ca377526b.herokuapp.com/users/${user.Username}/movies/${movie._id}`,
+      { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } }
+    )
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          alert('Failed');
+        }
+      })
+      .then((user) => {
+        if (user) {
+          alert('Deleted from Favorites');
+          localStorage.setItem('user', JSON.stringify(user));
+          setUser(user);
+          setIsFavorite(false);
+        }
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+
   return (
     <Card className='h-100'>
-      <Card.Img variant='top' src={movie.ImagePath} />
+      <Card.Img className='my-3' src={movie.ImagePath} />
+
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
-        <Button onClick={() => onMovieClick(movie)} variant='link'>
-          Open
+        <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+          <Button variant='link'>Open</Button>
+        </Link>
+        <Button variant='primary' onClick={toggleFavorite}>
+          {isFavorite ? <FaHeartBroken /> : <FaHeart />}
         </Button>
       </Card.Body>
     </Card>
@@ -19,10 +86,8 @@ export const MovieCard = ({ movie, onMovieClick }) => {
 
 MovieCard.propTypes = {
   movie: PropTypes.shape({
-    Title: PropTypes.string.isRequired,
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-    }),
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
   }).isRequired,
-  onMovieClick: PropTypes.func.isRequired,
 };
