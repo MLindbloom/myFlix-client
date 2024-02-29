@@ -11,8 +11,8 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
   const Navigate = useNavigate();
 
-  const favoriteMoviesList = movies.filter((movies) =>
-    user.favoriteMovies.includes(movie._id)
+  const favoriteMoviesList = movies.filter((movie) =>
+    user.FavoriteMovies.includes(movie._id)
   );
 
   const handleUpdate = (e) => {
