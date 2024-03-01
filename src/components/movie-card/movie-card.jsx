@@ -6,12 +6,9 @@ import { FaHeart, FaHeartBroken } from 'react-icons/fa';
 
 export const MovieCard = ({ movie, token, setUser, user }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const toggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-  };
 
   useEffect(() => {
-    if (user.favoriteMovies && user.favoriteMovies.includes(movie._id)) {
+    if (user.FavoriteMovies && user.FavoriteMovies.includes(movie._id)) {
       setIsFavorite(true);
     }
   }, [user]);
@@ -76,8 +73,11 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
         <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
           <Button variant='link'>Open</Button>
         </Link>
-        <Button variant='primary' onClick={toggleFavorite}>
-          {isFavorite ? <FaHeartBroken /> : <FaHeart />}
+        <Button
+          variant='primary'
+          onClick={isFavorite ? removeFavoriteMovie : addFavoriteMovie}
+        >
+          Favorite
         </Button>
       </Card.Body>
     </Card>
