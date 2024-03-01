@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { FaHeart, FaHeartBroken } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 
 export const MovieCard = ({ movie, token, setUser, user }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -73,12 +73,10 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
         <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
           <Button variant='link'>Open</Button>
         </Link>
-        <Button
-          variant='primary'
+        <FaHeart
           onClick={isFavorite ? removeFavoriteMovie : addFavoriteMovie}
-        >
-          Favorite
-        </Button>
+          style={{ color: isFavorite ? 'red' : 'black', cursor: 'pointer' }}
+        />
       </Card.Body>
     </Card>
   );
