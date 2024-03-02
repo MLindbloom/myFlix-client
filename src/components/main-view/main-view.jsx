@@ -5,9 +5,9 @@ import { LoginView } from '../login-view/login-view';
 import { SignupView } from '../signup-view/signup-view';
 import { NavigationBar } from '../navigation-bar/navigation-bar';
 import { ProfileView } from '../profile-view/profile-view';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { Form, InputGroup } from 'react-bootstrap';
 
 export const MainView = () => {
   const storedUser = JSON.parse(localStorage.getItem('user'));
@@ -15,6 +15,7 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser ? storedUser : null);
   const [token, setToken] = useState(storedToken ? storedToken : null);
   const [movies, setMovies] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     if (!token) {
@@ -53,6 +54,15 @@ export const MainView = () => {
           localStorage.clear();
         }}
       />
+      <Form>
+        <InputGroup className='my-4'>
+          <Form.Control
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder='Search movies...'
+            style={{ backgroundColor: 'white' }}
+          />
+        </InputGroup>
+      </Form>
       <Row className='justify-content-md-center' style={{ marginTop: '20px' }}>
         <Routes>
           <Route
@@ -114,17 +124,24 @@ export const MainView = () => {
                   <Col>The list is empty</Col>
                 ) : (
                   <>
-                    {movies.map((movie) => (
-                      <Col className='mb-5' key={movie._id} md={3}>
-                        <MovieCard
-                          key={user ? user.FavoriteMovies.length : 0}
-                          token={token}
-                          setUser={setUser}
-                          user={user}
-                          movie={movie}
-                        />
-                      </Col>
-                    ))}
+                    {movies
+                      .filter((movie) => {
+                        const lowercaseSearch = search.toLowerCase();
+                        return lowercaseSearch === ''
+                          ? movie
+                          : movie.Title.toLowerCase().includes(lowercaseSearch);
+                      })
+                      .map((movie) => (
+                        <Col className='mb-5' key={movie._id} md={3}>
+                          <MovieCard
+                            key={user ? user.FavoriteMovies.length : 0}
+                            token={token}
+                            setUser={setUser}
+                            user={user}
+                            movie={movie}
+                          />
+                        </Col>
+                      ))}
                   </>
                 )}
               </>
