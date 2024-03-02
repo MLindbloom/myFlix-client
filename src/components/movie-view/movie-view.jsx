@@ -11,25 +11,29 @@ export const MovieView = ({ movies }) => {
   return (
     <>
       <Row className='justify-content-center'>
-        <Col md={5}>
+        <Col md={6}>
           <img src={movie.ImagePath} alt='movie-poster' className='w-100' />
         </Col>
-        <Col md={3}>
+        <Col md={6}>
           <div className='my-1'>
             <span className='h1'>{movie.Title}</span>
           </div>
+          <br />
           <div className='my-1'>
             <span className='h5'>Description: </span>
             <span>{movie.Description}</span>
           </div>
+          <br />
           <div className='my-1'>
             <span className='h5'>Genre: </span>
             <span>{movie.Genre.Name}</span>
           </div>
+          <br />
           <div className='my-1'>
             <span className='h5'>Director: </span>
             <span>{movie.Director.Name}</span>
           </div>
+          <br />
           <Link to={`/`}>
             <Button className='back-button' style={{ cursor: 'pointer' }}>
               Back

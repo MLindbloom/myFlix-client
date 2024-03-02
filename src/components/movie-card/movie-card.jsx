@@ -72,7 +72,7 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
       </Card.Body>
-      <Card.Footer className='card-footer'>
+      <Card.Footer className='card-footer' style={{ backgroundColor: 'white' }}>
         <Row>
           <Col>
             <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
