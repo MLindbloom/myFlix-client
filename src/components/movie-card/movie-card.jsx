@@ -52,12 +52,12 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
         }
       })
       .then((updatedUser) => {
-        console.log('Updated user:', updatedUser); // Log updated user object
+        console.log('Updated user:', updatedUser);
         if (updatedUser) {
           alert('Deleted from Favorites');
           localStorage.setItem('user', JSON.stringify(updatedUser));
           setUser(updatedUser);
-          setIsFavorite(false); // Set isFavorite to false when movie is removed from favorites
+          setIsFavorite(false);
         }
       })
       .catch((error) => {
@@ -68,14 +68,11 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
   return (
     <Card className='h-100 movieCard p-2'>
       <Card.Img className='my-3' src={movie.ImagePath} />
-
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
       </Card.Body>
-
-      {/* Wrap the buttons in a Row */}
-      <Card.Footer>
+      <Card.Footer className='card-footer'>
         <Row>
           <Col>
             <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
