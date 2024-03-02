@@ -1,8 +1,9 @@
 import PropTypes from 'prop-types';
-import { Button, Card } from 'react-bootstrap';
+import { Button, Card, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { FaHeart } from 'react-icons/fa';
+import './movie-card.scss';
 
 export const MovieCard = ({ movie, token, setUser, user }) => {
   const [isFavorite, setIsFavorite] = useState(false);
@@ -50,12 +51,13 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
           alert('Failed');
         }
       })
-      .then((user) => {
-        if (user) {
+      .then((updatedUser) => {
+        console.log('Updated user:', updatedUser); // Log updated user object
+        if (updatedUser) {
           alert('Deleted from Favorites');
-          localStorage.setItem('user', JSON.stringify(user));
-          setUser(user);
-          setIsFavorite(false);
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+          setUser(updatedUser);
+          setIsFavorite(false); // Set isFavorite to false when movie is removed from favorites
         }
       })
       .catch((error) => {
@@ -64,20 +66,33 @@ export const MovieCard = ({ movie, token, setUser, user }) => {
   };
 
   return (
-    <Card className='h-100'>
+    <Card className='h-100 movieCard p-2'>
       <Card.Img className='my-3' src={movie.ImagePath} />
 
       <Card.Body>
         <Card.Title>{movie.Title}</Card.Title>
         <Card.Text>{movie.Director.Name}</Card.Text>
-        <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
-          <Button variant='link'>Open</Button>
-        </Link>
-        <FaHeart
-          onClick={isFavorite ? removeFavoriteMovie : addFavoriteMovie}
-          style={{ color: isFavorite ? 'red' : 'black', cursor: 'pointer' }}
-        />
       </Card.Body>
+
+      {/* Wrap the buttons in a Row */}
+      <Card.Footer>
+        <Row>
+          <Col>
+            <Link to={`/movies/${encodeURIComponent(movie._id)}`}>
+              <Button variant='link' className='open-btn'>
+                See More
+              </Button>
+            </Link>
+          </Col>
+          <Col>
+            <FaHeart
+              className='fav-btn'
+              onClick={isFavorite ? removeFavoriteMovie : addFavoriteMovie}
+              style={{ color: isFavorite ? 'red' : 'black', cursor: 'pointer' }}
+            />
+          </Col>
+        </Row>
+      </Card.Footer>
     </Card>
   );
 };
