@@ -1,3 +1,4 @@
+import React from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MovieCard } from '../movie-card/movie-card';
@@ -75,6 +76,15 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
     });
   };
 
+  const handleDeleteClick = () => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete your account?'
+    );
+    if (confirmed) {
+      handleDelete();
+    }
+  };
+
   return (
     <Container className='my-4'>
       <Row>
@@ -91,7 +101,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
         ))}
         <Col md={6}>
           <Card>
-            <Card.Body>
+            <Card.Body style={{ backgroundColor: 'white' }}>
               <Card.Title>Profile</Card.Title>
               <Card.Text>Username: {user.Username}</Card.Text>
               <Card.Text>Email: {user.Email}</Card.Text>
@@ -109,6 +119,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 minLength='3'
+                style={{ backgroundColor: 'white' }}
               />
             </Form.Group>
 
@@ -119,6 +130,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                style={{ backgroundColor: 'white' }}
               />
             </Form.Group>
 
@@ -129,6 +141,7 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
+                style={{ backgroundColor: 'white' }}
               />
             </Form.Group>
 
@@ -139,12 +152,15 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
                 value={birthday}
                 onChange={(e) => setBirthday(e.target.value)}
                 required
+                style={{ backgroundColor: 'white' }}
               />
             </Form.Group>
-            <Button variant='primary' type='submit' onClick={handleUpdate}>
-              Update User
-            </Button>
-            <Button onClick={handleDelete}>Delete Account</Button>
+            <div style={{ marginTop: '16px' }}>
+              <Button variant='primary' type='submit' onClick={handleUpdate}>
+                Update User
+              </Button>{' '}
+              <Button onClick={handleDeleteClick}>Delete Account</Button>
+            </div>
           </Form>
         </Col>
       </Row>
