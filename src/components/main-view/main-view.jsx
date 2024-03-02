@@ -117,6 +117,7 @@ export const MainView = () => {
                     {movies.map((movie) => (
                       <Col className='mb-5' key={movie._id} md={3}>
                         <MovieCard
+                          key={user ? user.FavoriteMovies.length : 0}
                           token={token}
                           setUser={setUser}
                           user={user}
