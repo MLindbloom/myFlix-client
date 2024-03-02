@@ -77,8 +77,8 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
   return (
     <Container className='my-4'>
-      <Row className='justify-content-md-center'>
-        <h2>Favorite Movies</h2>
+      <Row>
+        <h4>Favorite Movies</h4>
         {favoriteMoviesList?.map((movie) => (
           <Col key={movie._id} className='my-3'>
             <MovieCard
