@@ -1,3 +1,18 @@
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand h2 {
+  margin-left: 10px;
+}
+
+.navbar-brand img {
+  width: 70px;
+  height: auto;
+  margin-right: 10px;
+}
+
 .nav-bar {
-  background-color: rgb(145, 196, 238);
+  background-color: rgb(139, 204, 253);
 }

@@ -7,7 +7,11 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
     <Navbar bg='light' expand='lg'>
       <Container className='nav-bar'>
         <Navbar.Brand as={Link} to='/'>
-          myFlix
+          <img
+            src='https://img.freepik.com/free-vector/cinema-film-festival-movie-poster-background_1017-33461.jpg?size=626&ext=jpg&ga=GA1.1.98259409.1708646400&semt=ais'
+            alt='Film Projector'
+          />
+          <h2>myFlix</h2>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls='basic-navbar-nav' />
         <Navbar.Collapse id='basic-navbar-nav'>

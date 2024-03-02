@@ -10,8 +10,23 @@
   background-color: #e8f4fc;
 }
 
+.navbar-brand {
+  align-items: center;
+  display: flex;
+}
+
+.navbar-brand h2 {
+  margin-left: 10px;
+}
+
+.navbar-brand img {
+  width: 70px;
+  height: auto;
+  margin-right: 10px;
+}
+
 .nav-bar {
-  background-color: #91c4ee;
+  background-color: #8bccfd;
 }
 
 :root, [data-bs-theme="light"] {
