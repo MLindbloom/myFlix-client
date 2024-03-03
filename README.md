@@ -39,7 +39,7 @@ MyFLix app uses [Github movie_api repository](https://github.com/MLindbloom/movi
 * Allows users to create a new profile for the app
 
 **LoginView**
-*Allows users to login to their profile
+* Allows users to login to their profile
 
 **MainView**
 * Displays movie cards of each movie for users to browse
