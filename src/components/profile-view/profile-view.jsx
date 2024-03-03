@@ -87,6 +87,72 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
 
   return (
     <Container className='my-4'>
+      <hr />
+      <Col md={6}>
+        <Card>
+          <Card.Body style={{ backgroundColor: 'white' }}>
+            <Card.Title>Profile</Card.Title>
+            <Card.Text>Username: {user.Username}</Card.Text>
+            <Card.Text>Email: {user.Email}</Card.Text>
+            <Card.Text>Birthday: {user.Birthday}</Card.Text>
+          </Card.Body>
+        </Card>
+      </Col>
+      <Col md={8}>
+        <Form onSubmit={handleUpdate}>
+          <Form.Group controlId='formUsername'>
+            <Form.Label>Username: </Form.Label>
+            <Form.Control
+              type='text'
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+              minLength='3'
+              style={{ backgroundColor: 'white' }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId='formPassword'>
+            <Form.Label>Password: </Form.Label>
+            <Form.Control
+              type='password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              style={{ backgroundColor: 'white' }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId='formEmail'>
+            <Form.Label>Email: </Form.Label>
+            <Form.Control
+              type='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              style={{ backgroundColor: 'white' }}
+            />
+          </Form.Group>
+
+          <Form.Group controlId='formBirthday'>
+            <Form.Label>Birthday: </Form.Label>
+            <Form.Control
+              type='date'
+              value={birthday}
+              onChange={(e) => setBirthday(e.target.value)}
+              required
+              style={{ backgroundColor: 'white' }}
+            />
+          </Form.Group>
+          <div style={{ marginTop: '16px' }}>
+            <Button variant='primary' type='submit' onClick={handleUpdate}>
+              Update User
+            </Button>{' '}
+            <Button onClick={handleDeleteClick}>Delete Account</Button>
+          </div>
+        </Form>
+      </Col>
+      <hr />
       <Row>
         <h4>Favorite Movies</h4>
         {favoriteMoviesList?.map((movie) => (
@@ -99,71 +165,6 @@ export const ProfileView = ({ user, token, movies, setUser }) => {
             />
           </Col>
         ))}
-        <hr />
-        <Col md={6}>
-          <Card>
-            <Card.Body style={{ backgroundColor: 'white' }}>
-              <Card.Title>Profile</Card.Title>
-              <Card.Text>Username: {user.Username}</Card.Text>
-              <Card.Text>Email: {user.Email}</Card.Text>
-              <Card.Text>Birthday: {user.Birthday}</Card.Text>
-            </Card.Body>
-          </Card>
-        </Col>
-        <Col md={8}>
-          <Form onSubmit={handleUpdate}>
-            <Form.Group controlId='formUsername'>
-              <Form.Label>Username: </Form.Label>
-              <Form.Control
-                type='text'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                minLength='3'
-                style={{ backgroundColor: 'white' }}
-              />
-            </Form.Group>
-
-            <Form.Group controlId='formPassword'>
-              <Form.Label>Password: </Form.Label>
-              <Form.Control
-                type='password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                style={{ backgroundColor: 'white' }}
-              />
-            </Form.Group>
-
-            <Form.Group controlId='formEmail'>
-              <Form.Label>Email: </Form.Label>
-              <Form.Control
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                style={{ backgroundColor: 'white' }}
-              />
-            </Form.Group>
-
-            <Form.Group controlId='formBirthday'>
-              <Form.Label>Birthday: </Form.Label>
-              <Form.Control
-                type='date'
-                value={birthday}
-                onChange={(e) => setBirthday(e.target.value)}
-                required
-                style={{ backgroundColor: 'white' }}
-              />
-            </Form.Group>
-            <div style={{ marginTop: '16px' }}>
-              <Button variant='primary' type='submit' onClick={handleUpdate}>
-                Update User
-              </Button>{' '}
-              <Button onClick={handleDeleteClick}>Delete Account</Button>
-            </div>
-          </Form>
-        </Col>
       </Row>
     </Container>
   );
