@@ -47,6 +47,7 @@ export const LoginView = ({ onLoggedIn }) => {
           onChange={(e) => setUsername(e.target.value)}
           required
           minLength='3'
+          style={{ backgroundColor: 'white' }}
         />
       </Form.Group>
 
@@ -57,9 +58,11 @@ export const LoginView = ({ onLoggedIn }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          style={{ backgroundColor: 'white' }}
         />
       </Form.Group>
-      <Button variatnt='primary' type='submit'>
+      <br />
+      <Button variant='primary' type='submit'>
         Submit
       </Button>
     </Form>
