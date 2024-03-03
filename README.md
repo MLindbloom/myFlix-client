@@ -35,25 +35,25 @@ MyFLix app uses [Github movie_api repository](https://github.com/MLindbloom/movi
 
 ### React Components
 
-* **SignupView**
-&nbsp;&nbsp; * Allows users to create a new profile for the app
+**SignupView**
+* Allows users to create a new profile for the app
 
-* **LoginView**
-&nbsp;&nbsp; *Allows users to login to their profile
+**LoginView**
+*Allows users to login to their profile
 
-* **MainView**
-&nbsp;&nbsp; * Displays movie cards of each movie for users to browse
-&nbsp;&nbsp; * Allows users to search app for a specific movie
-&nbsp;&nbsp; * Users can favorite a movie from each specific movie card
-&nbsp;&nbsp; * Users can click to see more information about a specific movie
+**MainView**
+* Displays movie cards of each movie for users to browse
+* Allows users to search app for a specific movie
+* Users can favorite a movie from each specific movie card
+* Users can click to see more information about a specific movie
 
-* **MovieView**
-&nbsp;&nbsp; * Displays the movie information including: Image, Title, Description, Director and Genre
+**MovieView**
+* Displays the movie information including: Image, Title, Description, Director and Genre
 
-* **ProfileView**
-&nbsp;&nbsp; * Displays User information including: Username, Password, Email, and Birthday
-&nbsp;&nbsp; * Allows Users to update their information
-&nbsp;&nbsp; * Displays users favorite movies and allows users to delete movies from favorites
+**ProfileView**
+* Displays User information including: Username, Password, Email, and Birthday
+* Allows Users to update their information
+* Displays users favorite movies and allows users to delete movies from favorites
 
 ### Technologies 
 
